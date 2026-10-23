@@ -4,7 +4,7 @@ Live at **[acloudyday.net](https://acloudyday.net/)**. A personal portfolio focu
 
 ## Current website
 
-The production website lives in [`Website/`](Website/). It uses semantic HTML and responsive CSS; there is no build step or client-side JavaScript dependency. Portrait images use responsive WebP sources with a JPEG fallback. The site includes keyboard focus styles, a skip link, reduced-motion support, print styles, structured profile data, and a social sharing image.
+The production website lives in [`Website/`](Website/). It uses semantic HTML and responsive CSS; there is no build step. Optional visitor analytics uses a small consent script; the portfolio works without JavaScript. Portrait images use responsive WebP sources with a JPEG fallback. The site includes keyboard focus styles, a skip link, reduced-motion support, print styles, structured profile data, and a social sharing image.
 
 ```text
 Browser → HTTPS → Amazon CloudFront → Amazon S3
@@ -33,3 +33,13 @@ aws cloudfront create-invalidation --distribution-id E194NF418BRUEG --paths '/*'
 ```
 
 Verify the invalidation completes and the public page and changed assets match the release. When editing the stylesheet, update its version query in `index.html` so returning visitors request the latest CSS.
+
+## Visitor analytics
+
+GA4 property **acloudyday.net** (560432695), account **Jon Rogol — acloudyday.net** (413180626), web stream 16189848627, measurement ID `G-TMS4PX6SKX`.
+
+[Open Analytics](https://analytics.google.com/analytics/web/#/a413180626p560432695/reports/intelligenthome). Use Reports → Acquisition → User acquisition and choose Last 30 days; **Total users** estimates distinct visitors, while Views counts page loads. Realtime shows recent test visits. Standard reports can take 24–48 hours to populate. Tracking starts with this release and cannot backfill previous visits.
+
+`analytics.js` loads Google's tag only on the production apex/www hostnames and only after explicit visitor consent. No requests go to Analytics when a visitor declines. The footer and privacy page reopen the choice; withdrawing consent disables collection, removes GA cookies, and reloads the page to unload the tag. Local previews never load Analytics. Page/referrer query strings and fragments are stripped. Google Signals, ad personalization, optional account sharing, and enhanced measurement are off; basic page views and automatic session/user measurement remain enabled.
+
+Counts cover consenting, unblocked browsers and are estimates, not a census of people. Separate browsers/devices may count separately; known bots are filtered by GA4, but no analytics system detects every bot. Keep `privacy.html` in sync with future measurement changes.
