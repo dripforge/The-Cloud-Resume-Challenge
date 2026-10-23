@@ -38,8 +38,10 @@ Verify the invalidation completes and the public page and changed assets match t
 
 GA4 property **acloudyday.net** (560432695), account **Jon Rogol — acloudyday.net** (413180626), web stream 16189848627, measurement ID `G-TMS4PX6SKX`.
 
-[Open Analytics](https://analytics.google.com/analytics/web/#/a413180626p560432695/reports/intelligenthome). Use Reports → Acquisition → User acquisition and choose Last 30 days; **Total users** estimates distinct visitors, while Views counts page loads. Realtime shows recent test visits. Standard reports can take 24–48 hours to populate. Tracking starts with this release and cannot backfill previous visits.
+[Open Analytics](https://analytics.google.com/analytics/web/#/a413180626p560432695/reports/intelligenthome). On Home, select **Total users** in the first metric dropdown and **Last 30 days** in its date picker; **Total users** estimates distinct visitors, while Views counts page loads. Realtime shows recent test visits. Standard reports can take 24–48 hours to populate. Tracking starts with this release and cannot backfill previous visits.
 
 `analytics.js` loads Google's tag only on the production apex/www hostnames and only after explicit visitor consent. No requests go to Analytics when a visitor declines. The footer and privacy page reopen the choice; withdrawing consent disables collection, removes GA cookies, and reloads the page to unload the tag. Local previews never load Analytics. Page/referrer query strings and fragments are stripped. Google Signals, ad personalization, optional account sharing, and enhanced measurement are off; basic page views and automatic session/user measurement remain enabled.
 
 Counts cover consenting, unblocked browsers and are estimates, not a census of people. Separate browsers/devices may count separately; known bots are filtered by GA4, but no analytics system detects every bot. Keep `privacy.html` in sync with future measurement changes.
+
+Live verification on October 23, 2026: the four published files matched the release, CloudFront invalidation `IA31899CLFTSKR43G2J1BWMFXS` completed, and Realtime received one test user with `first_visit`, `session_start`, and `page_view` events.
